@@ -37,4 +37,8 @@ async def _8ball(ctx, *, question):
     ]
     await ctx.send("Question: " + question + "\nAnswer: " + random.choice(responses))
 
-client.run('NjA5MDk2NTQwNDU5NjMwNjA0.XUx6BA.KSYnOJM9LnHJOOw1xQFXe_RjdfM')
+# get token from token.txt
+getToken = open("token.txt", "r")
+token = getToken.read()
+
+client.run(token)
