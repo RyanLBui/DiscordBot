@@ -20,7 +20,7 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f"{member} has left the server.")
 
-# function/command for bot to reply
+# function/command test bot reply
 @client.command()
 async def ping(ctx):
      await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
@@ -37,7 +37,12 @@ async def _8ball(ctx, *, question):
     ]
     await ctx.send("Question: " + question + "\nAnswer: " + random.choice(responses))
 
-# get token from token.txt
+@client.command()
+async def clear(ctx, amount = 2):
+    # pass in amount of messages to purge/delete from channel, if no amount given delete default number
+    await ctx.channel.purge(limit = amount)
+
+# get discord token from token.txt
 getToken = open("token.txt", "r")
 token = getToken.read()
 
