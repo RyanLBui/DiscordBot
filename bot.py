@@ -20,6 +20,12 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f"{member} has left the server.")
 
+#command error
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Invalid Command\nUse .help or .listcommands to see list of commands.")
+
 # list all commands 
 commandsList = "List of Commands:\n.ping\n.8ball (ask question)\n.Question (ask question)\n.clear (number of messages to clear)"
 
