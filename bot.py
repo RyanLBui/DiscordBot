@@ -20,10 +20,13 @@ async def on_member_join(member):
 async def on_member_remove(member):
     print(f"{member} has left the server.")
 
+# list all commands 
+commandsList = "List of Commands:\n.ping\n.8ball (ask question)\n.Question (ask question)\n.clear (number of messages to clear)"
+
 # function/command test bot reply
 @client.command()
 async def ping(ctx):
-     await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
+     await ctx.send(f"Pong? {round(client.latency * 1000)}ms")
      
 # 8 ball command
 @client.command(aliases= ["8ball", "Question", "question", "8Ball"])    # aliases can be used to call function with any of these names
@@ -37,10 +40,16 @@ async def _8ball(ctx, *, question):
     ]
     await ctx.send("Question: " + question + "\nAnswer: " + random.choice(responses))
 
+#command to clear certain ammount of messages
 @client.command()
 async def clear(ctx, amount = 2):
     # pass in amount of messages to purge/delete from channel, if no amount given delete default number
     await ctx.channel.purge(limit = amount)
+
+@client.command()
+async def listcommands(ctx):
+    await ctx.send(commandsList)
+
 
 # get discord token from token.txt
 getToken = open("token.txt", "r")
